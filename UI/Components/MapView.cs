@@ -75,6 +75,16 @@ namespace DynamicMaps.UI.Components
             _markers.Add(marker);
         }
 
+        public HotZonesMarker AddHotZonesMarker(string category, string text, Color color, string imagePath, Vector3 position, Vector2 size,
+                                                float scale )
+        {
+            Plugin.Log.LogInfo("Called AddHotZonesMarker");
+            var marker = HotZonesMarker.Create(MapMarkerContainer, text, category, color, imagePath, position, size, 
+                                                -CoordinateRotation, 1f/ZoomCurrent);
+            //AddMapMarker(marker);
+            return marker;
+        }
+        
         public MapMarker AddMapMarker(MapMarkerDef markerDef)
         {
             var marker = MapMarker.Create(MapMarkerContainer, markerDef, _markerSize, -CoordinateRotation, 1f/ZoomCurrent);
