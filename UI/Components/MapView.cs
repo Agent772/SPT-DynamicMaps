@@ -307,7 +307,7 @@ namespace DynamicMaps.UI.Components
             zoomNew = Mathf.Clamp(zoomNew, ZoomMin, ZoomMax);
 
             // already there
-            if (zoomNew == ZoomCurrent)
+            if (zoomNew.ApproxEquals(ZoomCurrent))
             {
                 return;
             }

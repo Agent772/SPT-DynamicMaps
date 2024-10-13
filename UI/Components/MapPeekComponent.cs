@@ -65,6 +65,7 @@ namespace DynamicMaps.UI.Components
             {
                 return;
             }
+            
             MapScreen.WasMinimapActive = MapScreen.IsMinimapActive;
 
             if (MapScreen.IsMinimapActive && MapScreen.MiniMapComponent != null)

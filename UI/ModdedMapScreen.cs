@@ -11,7 +11,6 @@ using DynamicMaps.UI.Components;
 using DynamicMaps.UI.Controls;
 using DynamicMaps.Utils;
 using EFT.UI;
-using EFT.UI.Map;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -261,18 +260,8 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenShow()
         {
-            if(PeekComponent != null)
-            {
-                PeekComponent.EndPeek();
-            }
-
-            if (WasMinimapActive)
-            {
-                if(MiniMapComponent != null)
-                {
-                    MiniMapComponent.EndMiniMap();
-                }
-            }
+            PeekComponent?.EndPeek();
+            MiniMapComponent?.EndMiniMap();
 
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
@@ -284,12 +273,10 @@ namespace DynamicMaps.UI
         internal void OnMapScreenClose()
         {
             Hide();
-            if (WasMinimapActive)
+            
+            if (WasMinimapActive && MiniMapComponent != null)
             {
-                if(MiniMapComponent != null)
-                {
-                    MiniMapComponent.BeginMiniMap();
-                }
+                MiniMapComponent.BeginMiniMap();
             }
         }
 
@@ -668,6 +655,12 @@ namespace DynamicMaps.UI
             if (MiniMapComponent != null)
             {
                 MiniMapComponent.ActivateMiniMap = Settings.MiniMapKey.Value;
+
+                if (Settings.MiniMapEnabled.Value && !IsMinimapActive)
+                {
+                    MiniMapComponent.BeginMiniMap();
+                }
+                
                 if (IsMinimapActive)
                 {
                     _scrollMask.GetRectTransform().anchoredPosition = Settings.MiniMapAnchoredPosition.Value;

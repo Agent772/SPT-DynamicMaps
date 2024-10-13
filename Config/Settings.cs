@@ -68,6 +68,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> HoldForPeek;
 
         public const string MiniMapTitle = "4. Mini-Map";
+        public static ConfigEntry<bool> MiniMapEnabled;
         public static ConfigEntry<KeyboardShortcut> MiniMapKey;
         public static ConfigEntry<KeyboardShortcut> MiniMapZoomIn;
         public static ConfigEntry<KeyboardShortcut> MiniMapZoomOut;
@@ -409,6 +410,15 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
 
             //4. Mini-Map START
+            ConfigEntries.Add(MiniMapEnabled = Config.Bind(
+                MiniMapTitle,
+                "Enable Mini Map",
+                false,
+                new ConfigDescription(
+                    "Enable the mini map",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
             ConfigEntries.Add(MiniMapSizeDelta = Config.Bind(
                  MiniMapTitle,
                  "Zoom Map size",
