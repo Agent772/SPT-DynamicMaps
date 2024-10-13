@@ -655,9 +655,10 @@ namespace DynamicMaps.UI
             if (MiniMapComponent != null)
             {
                 MiniMapComponent.ActivateMiniMap = Settings.MiniMapKey.Value;
-
-                if (Settings.MiniMapEnabled.Value && !IsMinimapActive)
+                
+                if (Settings.MiniMapEnabled.Value)
                 {
+                    MiniMapComponent.gameObject.SetActive(true);
                     MiniMapComponent.BeginMiniMap();
                 }
                 

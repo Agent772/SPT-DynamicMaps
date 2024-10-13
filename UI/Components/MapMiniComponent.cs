@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using DynamicMaps.Config;
 using DynamicMaps.Utils;
 using UnityEngine;
 
@@ -32,6 +33,11 @@ namespace DynamicMaps.UI.Components
 
         private void Update()
         {
+            if (!Settings.MiniMapEnabled.Value)
+            {
+                gameObject.SetActive(false);
+            }
+            
             if (ActivateMiniMap.BetterIsDown())
             {
                 if (!IsActive)
