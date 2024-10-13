@@ -1,6 +1,8 @@
 ﻿using BepInEx.Configuration;
 using DynamicMaps.Config;
 using DynamicMaps.Utils;
+using EFT;
+using RootMotion;
 using UnityEngine;
 
 namespace DynamicMaps.UI.Components
@@ -53,6 +55,8 @@ namespace DynamicMaps.UI.Components
 
         internal void BeginMiniMap()
         {
+            if (Comfort.Common.Singleton<GameWorld>.Instance is HideoutGameWorld) return;
+            
             IsActive = true;
 
             MapScreen.transform.SetParent(RectTransform);
