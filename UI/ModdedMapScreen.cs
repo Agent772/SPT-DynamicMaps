@@ -160,22 +160,7 @@ namespace DynamicMaps.UI
                     OnScroll(scroll);
                 }
             }
-
-            if (Settings.MiniMapZoomIn.Value.BetterIsDown())
-            {
-                var currentZoom = _mapView.ZoomCurrent + 1f;
-                _mapView.SetMapZoom(currentZoom, .5f);
-                Settings.MiniMapZoom.Value = currentZoom;
-                Settings.Config.Save();
-            }
-            else if (Settings.MiniMapZoomOut.Value.BetterIsDown())
-            {
-                var currentZoom = _mapView.ZoomCurrent - 1f;
-                _mapView.SetMapZoom(currentZoom, .5f);
-                Settings.MiniMapZoom.Value = currentZoom;
-                Settings.Config.Save();
-            }
-
+            
             // change level hotkeys
             if (_moveMapLevelUpShortcut.BetterIsDown())
             {
