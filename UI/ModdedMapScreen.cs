@@ -217,6 +217,7 @@ namespace DynamicMaps.UI
 
             // zoom hotkeys
             var zoomAmount = 0f;
+            
             if (_zoomMapOutShortcut.BetterIsPressed())
             {
                 zoomAmount -= 1f;
@@ -240,7 +241,7 @@ namespace DynamicMaps.UI
                 if (player != null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
-                    _mapView.ShiftMapToCoordinate(mapPosition, _positionTweenTime);
+                    _mapView.ShiftMapToCoordinate(mapPosition, IsMinimapActive ? 0 : _positionTweenTime);
                     _mapView.SelectLevelByCoords(mapPosition);
                 }
             }
@@ -790,7 +791,7 @@ namespace DynamicMaps.UI
                 }
             }
         }
-
+        
         private void PrecacheMapLayerImages()
         {
             Singleton<CommonUI>.Instance.StartCoroutine(
